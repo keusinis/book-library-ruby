@@ -3,8 +3,8 @@
 require_relative 'invalid_username_error'
 
 class Bouncer
-  def initialize(user_file_path)
-    @user_file_path = user_file_path
+  def initialize(users_file_path)
+    @users_file_path = users_file_path
     @usernames = load_usernames
     @logged_in_user = nil
   end
@@ -25,13 +25,13 @@ class Bouncer
   private
 
   def load_usernames
-    return [] unless File.exist?(@user_file_path)
+    return [] unless File.exist?(@users_file_path)
 
-    File.readlines(@user_file_path).map(&:chomp)
+    File.readlines(@users_file_path).map(&:chomp)
   end
 
   def save_username(username)
-    File.write(@user_file_path, "#{username}\n", mode: 'a')
+    File.write(@users_file_path, "#{username}\n", mode: 'a')
   end
 
   def validate_username(username)
