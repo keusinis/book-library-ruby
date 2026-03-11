@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/rubymine,ruby
 # Edit at https://www.toptal.com/developers/gitignore?templates=rubymine,ruby
 .idea/
+
+# Ignore user and borrowed book database files
+/data/users.db
+/data/borrowed_books.db
+
 ### Ruby ###
 *.gem
 *.rbc
