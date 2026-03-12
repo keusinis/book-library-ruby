@@ -13,15 +13,15 @@ class CLI
     print_welcome
     return print_goodbye unless authorize
 
-    print_menu
+    main_loop
     print_goodbye
   end
 
   private
 
-  def print_menu
-    puts 'What would you like to do?'
+  def menu_prompt
     puts
+    puts '~ What would you like to do? ~'
     puts '1. List available books'
     puts '2. Borrow a book'
     puts '3. Return a book'
@@ -29,6 +29,18 @@ class CLI
     puts
     print 'Your choice: '
     gets.chomp
+  end
+
+  def main_loop
+    loop do
+      case menu_prompt
+      when '1' then @librarian.list_available_books
+      when '2' then # @librarian.borrow_book
+      when '3' then # @librarian.return_book
+      when '4' then break
+      else puts 'Umm sorry, what?'
+      end
+    end
   end
 
   def print_welcome
