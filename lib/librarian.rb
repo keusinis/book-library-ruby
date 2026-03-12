@@ -19,7 +19,6 @@ class Librarian
   end
 
   def list_available_books
-    puts @borrowed_books.count
     puts 'Book ID | Book Name | Author | Release Year'
     @books.each do |book|
       next if @borrowed_books.include?(book['Book ID'])
