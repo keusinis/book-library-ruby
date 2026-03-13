@@ -35,12 +35,19 @@ class CLI
     loop do
       case menu_prompt
       when '1' then @librarian.list_available_books
-      when '2' then # @librarian.borrow_book
+      when '2' then borrow_book_flow
       when '3' then # @librarian.return_book
       when '4' then break
       else puts 'Umm sorry, what?'
       end
     end
+  end
+
+  def borrow_book_flow
+    book_id = prompt('Which book would you like to borrow (Book ID)? ')
+    return puts 'Sorry! Book does not exist or is already borrowed' unless @librarian.borrow_book(book_id)
+
+    puts "Book ##{book_id} borrowed successfully!"
   end
 
   def print_welcome
