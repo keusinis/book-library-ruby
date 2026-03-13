@@ -24,6 +24,14 @@ class Librarian
     save_borrowed_book(book_id)
   end
 
+  def return_book(book_id)
+    return false unless @borrowed_books.include?(book_id)
+
+    @borrowed_books.delete(book_id)
+    update_borrowed_books
+    true
+  end
+
   private
 
   def book_available(book_id)
@@ -45,5 +53,11 @@ class Librarian
 
   def save_borrowed_book(book_id)
     File.write(@borrowed_file_path, "#{book_id}\n", mode: 'a')
+  end
+
+  def update_borrowed_books
+    File.open(@borrowed_file_path, mode: 'w') do |file|
+      file.puts(@borrowed_books.join('\n'))
+    end
   end
 end
